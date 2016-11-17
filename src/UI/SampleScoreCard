@@ -1,0 +1,228 @@
+package UI;
+
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
+import javax.imageio.*;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.*;
+
+public class Main {
+
+	public static void main(String[] args){
+		JFrame frame = new JFrame("Yahtzee!");
+		frame.setSize(700,750);
+		frame.setVisible(true); 
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		JPanel Master = new JPanel();
+		Master.setLayout(null);
+		Master.setSize(frame.getWidth(), frame.getHeight());
+		Master.setBackground(Color.white);
+		
+		JPanel Pro = new JPanel();
+		Pro.setLayout(new GridLayout(2, 1, 20, 20));
+		Pro.setSize(600, 600);
+		Pro.setBackground(Color.white);
+		
+		JPanel total = new JPanel();
+		total.setLayout(new GridLayout(1, 2, 25, 0));
+		total.setSize(300, 300);
+		total.setBackground(Color.white);
+		
+		// left score panel and right score panel 
+		JPanel LeftPanel = LeftScorecard(); 
+		JPanel RightPanel = RightScorecard(); 
+		
+		// New Button Layout
+		total.add(LeftPanel); 
+		total.add(RightPanel);
+			
+		JPanel BottomTotal = new JPanel();
+		total.setLayout(new GridLayout(4, 1, 25, 0));
+		total.setSize(50, 50);
+		total.setBackground(Color.white);
+		
+		
+		// dice 
+		JPanel Dices = Dice(); 
+		
+		//Buttons
+		JPanel Button = RowButtons(); 
+			
+		BottomTotal.add(Dices); 
+		BottomTotal.add(Button); 		
+		
+		Pro.add(total);
+		Pro.add(BottomTotal);
+		
+		Master.add(Pro); 
+		frame.add(Master); 
+	}
+	
+	public static JPanel LeftScorecard(){
+		
+		// Create the panel for the first score card
+		JPanel LPanel = new JPanel(new GridLayout(6,2)); 
+		LPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		LPanel.setSize(220, 125); 
+ 	
+		JToggleButton leftLabel1 = new JToggleButton("Aces");
+		leftLabel1.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(leftLabel1); 
+		
+		JLabel RightLabel1 = new JLabel("0");
+		RightLabel1.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(RightLabel1);
+			
+		JToggleButton leftLabel2 = new JToggleButton("2s");
+		leftLabel2.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(leftLabel2); 
+		
+		JLabel RightLabel2 = new JLabel("0");
+		RightLabel2.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(RightLabel2);
+		
+		JToggleButton leftLabel3 = new JToggleButton("3s");
+		leftLabel3.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(leftLabel3); 
+		
+		JLabel RightLabel3 = new JLabel("0");
+		RightLabel3.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(RightLabel3);
+				
+		JToggleButton leftLabel4 = new JToggleButton("4s");
+		leftLabel4.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(leftLabel4); 
+				
+		JLabel RightLabel4 = new JLabel("0");
+		RightLabel4.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(RightLabel4);
+				
+		JToggleButton leftLabel5 = new JToggleButton("5s");
+		leftLabel5.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(leftLabel5);
+				
+		JLabel RightLabel5 = new JLabel("0");
+		RightLabel5.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(RightLabel5);
+				
+		JToggleButton leftLabel6 = new JToggleButton("6s");
+		leftLabel6.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(leftLabel6); 
+				
+		JLabel RightLabel6 = new JLabel("0");
+		RightLabel6.setHorizontalAlignment(SwingConstants.CENTER); 
+		LPanel.add(RightLabel6);
+		
+		return LPanel; 
+		
+	}
+
+	public static JPanel RightScorecard(){
+		
+		// Create the panel for the first score card
+		JPanel RPanel = new JPanel(new GridLayout(7,2)); 
+		RPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		RPanel.setSize(220, 125); 
+
+		JToggleButton leftLabel1 = new JToggleButton("3 of a kind");
+		leftLabel1.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel1); 
+		
+		JLabel RightLabel1 = new JLabel("0");
+		RightLabel1.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(RightLabel1);
+			
+		JToggleButton leftLabel2 = new JToggleButton("4 of a king");
+		leftLabel2.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel2); 
+		
+		JLabel RightLabel2 = new JLabel("0");
+		RightLabel2.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(RightLabel2);
+		
+		JToggleButton leftLabel3 = new JToggleButton("Full House");
+		leftLabel3.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel3); 
+				
+		JLabel RightLabel3 = new JLabel("0");
+		RightLabel3.setHorizontalAlignment(SwingConstants.CENTER);
+		RPanel.add(RightLabel3);
+		
+		JToggleButton leftLabel4 = new JToggleButton("Small Straight");
+		leftLabel4.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel4); 
+		
+		JLabel RightLabel4 = new JLabel("0");
+		RightLabel4.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(RightLabel4);
+		
+		JToggleButton leftLabel5 = new JToggleButton("Large Straight");
+		leftLabel5.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel5); 
+		
+		JLabel RightLabel5 = new JLabel("0");
+		RightLabel5.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(RightLabel5);
+				
+		JToggleButton leftLabel6 = new JToggleButton("Yahtzee");
+		leftLabel6.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel6); 
+				
+		JLabel RightLabel6 = new JLabel("0");
+		RightLabel6.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(RightLabel6);
+				
+		JToggleButton leftLabel7 = new JToggleButton("Chance");
+		leftLabel7.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(leftLabel7);
+				
+		JLabel RightLabel7 = new JLabel("0");
+		RightLabel7.setHorizontalAlignment(SwingConstants.CENTER); 
+		RPanel.add(RightLabel7);
+				
+		return RPanel; 
+		
+	}
+	
+	public static JPanel Dice(){
+		
+		//Layout for the dice 
+		JPanel Dice = new JPanel(new GridLayout(1, 5, 20, 20)); 
+		
+		// create the dice as buttons 
+		ArrayList<JButton> Dices = new ArrayList<JButton>(); 
+		
+		 for(int i = 0; i < 5; i++){
+			 JButton temp = new JButton();
+			 String s = "" + i; 
+			 temp.setText(s); 
+			 Dices.add(temp);
+			 Dice.add(Dices.get(i)); 
+		 }
+		
+		 return Dice; 
+	}
+	
+	public static JPanel RowButtons(){
+		
+		JPanel Buttons = new JPanel(new GridLayout(1, 3, 20, 20)); 
+		
+		JButton Roll = new JButton("ROLL"); 
+		JButton Keep = new JButton("KEEP"); 
+		JButton EndTurn = new JButton("END TURN");
+		
+		Buttons.add(Roll); 
+		Buttons.add(Keep); 
+		Buttons.add(EndTurn); 
+		
+		return Buttons;
+		
+		
+		
+	}
+	
+}
