@@ -1,14 +1,13 @@
 package UI;
 import java.awt.*;
-import java.util.*;
 import javax.swing.*;
 
-public class MainPage {
+public class MainPage{
 
-	public static void main(String[] args) {
+	public MainPage() {
 		
 		JFrame frame = new JFrame("Yahtzee!");
-		frame.setSize(900,500);
+		frame.setSize(900,550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		
@@ -18,18 +17,19 @@ public class MainPage {
 		
 		JPanel ScoreCard = ScoreCard();
 		
-		JPanel Dice = Dice(); 
-		JPanel BottomButtons = RowButtons(); 
+		ButtonsAndDice Dice = new ButtonsAndDice();  
 		
 		Main.add(ScoreCard); 
 		Main.add(Box.createHorizontalStrut(5)); 
 		Main.add(Dice); 
 		Main.add(Box.createHorizontalStrut(5)); 
-		Main.add(BottomButtons); 
+		//Main.add(BottomButtons); 
 		
 		JPanel PlayersScore = Players(); 
+		PlayersScore.setPreferredSize(new Dimension(200, 480));
 		
 		JPanel flow = new JPanel(new FlowLayout()); 
+		
 		flow.add(PlayersScore); 
 		flow.add(Box.createVerticalStrut(200)); 
 		flow.add(Main);
@@ -150,43 +150,6 @@ public class MainPage {
 		LPanel.add(RightLabel70);
 		
 		return LPanel;
-
-	}
-
-	public static JPanel Dice(){
-			
-			//Layout for the dice 
-			JPanel Dice = new JPanel(new GridLayout(1, 5, 20, 20)); 
-			Dice.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-			
-			// create the dice as buttons 
-			ArrayList<JButton> Dices = new ArrayList<JButton>(); 
-			
-			 for(int i = 0; i < 5; i++){
-				 JButton temp = new JButton();
-				 temp.setIcon(new ImageIcon(MainPage.class.getResource("../images/Side 1.png"))); 
-				 //String s = "" + i; 
-				 //temp.setText(s); 
-				 Dices.add(temp);
-				 Dice.add(Dices.get(i)); 
-			 }
-			
-			 return Dice; 
-		}
-
-	public static JPanel RowButtons() {
-
-		JPanel Buttons = new JPanel(new GridLayout(1, 3, 20, 20));
-
-		JButton Roll = new JButton("ROLL");
-		JButton Keep = new JButton("KEEP");
-		JButton EndTurn = new JButton("END TURN");
-
-		Buttons.add(Roll);
-		Buttons.add(Keep);
-		Buttons.add(EndTurn);
-
-		return Buttons;
 
 	}
 
