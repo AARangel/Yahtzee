@@ -43,7 +43,7 @@ public class MainPage {
 		// Create the panel for the first score card
 		JPanel LPanel = new JPanel(new GridLayout(13, 2));
 		LPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		LPanel.setSize(220, 125);
+		LPanel.setSize(500, 125);
 
 		JToggleButton leftLabel1 = new JToggleButton("Aces");
 		leftLabel1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -164,8 +164,9 @@ public class MainPage {
 			
 			 for(int i = 0; i < 5; i++){
 				 JButton temp = new JButton();
-				 String s = "" + i; 
-				 temp.setText(s); 
+				 temp.setIcon(new ImageIcon(MainPage.class.getResource("../images/Side 1.png"))); 
+				 //String s = "" + i; 
+				 //temp.setText(s); 
 				 Dices.add(temp);
 				 Dice.add(Dices.get(i)); 
 			 }
@@ -194,20 +195,24 @@ public class MainPage {
 		JPanel Players = new JPanel(); 
 		Players.setLayout(new BoxLayout(Players, BoxLayout.Y_AXIS)); 
 		Players.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		// create each players Name Label and Score label 
-		//ArrayList<JPanel> Player = new ArrayList<JPanel>(); 
+
 		
 		for(int i = 0; i < 4; i++){
-			JPanel temp = new JPanel(new GridLayout(2, 1));
 			
+			JPanel temp = new JPanel(new GridLayout(2, 1));
 			temp.setBorder(BorderFactory.createLineBorder(Color.black));
 			temp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-			
+			temp.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
+		
 			String name = "Player " + (i+1);
 			
-			JLabel Score = new JLabel("Score: 0"); 
+			JLabel Score = new JLabel("Score: 0");
+			Score.setSize(100, 100); 
+			Score.setPreferredSize(new Dimension(100, 48));
+
 			JLabel Name = new JLabel(name);
+			Name.setSize(100, 100); 
+			Name.setPreferredSize(new Dimension(100,48));
 			
 			temp.add(Name); 
 			temp.add(Score); 
