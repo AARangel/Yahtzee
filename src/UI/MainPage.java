@@ -8,7 +8,7 @@ public class MainPage{
 		
 		JFrame frame = new JFrame("Yahtzee!");
 		frame.setSize(900,550);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 		
 		
 		JPanel Main = new JPanel(); 
