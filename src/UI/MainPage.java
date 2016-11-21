@@ -19,41 +19,16 @@ public class MainPage extends JFrame {
 	@SuppressWarnings("deprecation")
 	public MainPage() {
 
-
-			JFrame frame = new JFrame("Yahtzee!");
-			frame.setSize(900, 550);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-			JPanel Main = new JPanel();
-			Main.setLayout(new BoxLayout(Main, BoxLayout.Y_AXIS));
-			Main.setSize(500, 500);
-
-			ScoreCard = new ScoreCard();
-
-			Dice = new ButtonsAndDice();
-
-			Round = new JLabel("Round 1/13");
-
-			Main.add(Round);
-			Main.add(ScoreCard);
-			Main.add(Box.createHorizontalStrut(5));
-			Main.add(Dice);
-			Main.add(Box.createHorizontalStrut(5));
-			// Main.add(BottomButtons);
-
-			JPanel PlayersScore = Players();
-			// Player PlayersScore = new Player();
-			PlayersScore.setPreferredSize(new Dimension(200, 480));
-
-			JPanel flow = new JPanel(new FlowLayout());
-
-			flow.add(PlayersScore);
-			flow.add(Box.createVerticalStrut(200));
-			flow.add(Main);
-			frame.add(flow);
-			frame.setVisible(true);
-
-			StartGame();
+		LaunchMenu start = new LaunchMenu();
+		start.startLaunchMenu();
+		
+		while(!start.getMain())
+			System.out.println("Menu");
+		
+		Boolean Run = start.getMain(); 
+		
+		if(Run)
+			RunMain(); 
 
 	}
 	
