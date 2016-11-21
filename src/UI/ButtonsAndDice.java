@@ -21,6 +21,15 @@ public class ButtonsAndDice extends JPanel {
 	private int[] DiceValue = new int[5];
 	private int Rolls;
 	private Player CurrentPlayer;
+	private ScoreCard CurrentScoreCard; 
+	
+	public ScoreCard getCurrentScoreCard() {
+		return CurrentScoreCard;
+	}
+
+	public void setCurrentScoreCard(ScoreCard currentScoreCard) {
+		CurrentScoreCard = currentScoreCard;
+	}
 
 	// Constructor
 	public ButtonsAndDice() {
@@ -112,15 +121,6 @@ public class ButtonsAndDice extends JPanel {
 				// increment the amount of rolls left in this turn
 				Rolls++;
 
-				// Check if any of the dice are selected.
-				// for (int i = 0; i < 5; i++) {
-				// if (Dices[i].isSelected()) {
-				// Selected[i] = true;
-				// Dices[i].setBorder(BorderFactory.createLineBorder(
-				// Color.GREEN, 5));
-				// }
-				// }
-
 				// Roll the dice that are not selected
 				for (int i = 0; i < 5; i++) {
 
@@ -154,10 +154,23 @@ public class ButtonsAndDice extends JPanel {
 			for (int i = 0; i < 5; i++) {
 				if (Dices[i].isSelected() && DiceValue[i] > 0) {
 					Selected[i] = true;
-					Dices[i].setBorder(BorderFactory.createLineBorder(
-							Color.GREEN, 5));
+					Dices[i].setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
+					
 				}
 			}
+			
+			Boolean check = false;
+			for (int i = 0; i < 5; i++) {
+				if (Selected[i] == false)
+					check = true;
+			}
+			
+			if(check == false)
+			{
+				CurrentScoreCard.setCurrentPlayer(CurrentPlayer);
+				CurrentPlayer.setCurrentValues(DiceValue);
+			}
+			
 		}
 	}
 
@@ -205,13 +218,25 @@ public class ButtonsAndDice extends JPanel {
 
 			if (check == false) {
 				CurrentPlayer.setEndTurn(true);
-				CurrentPlayer.setCurrentValues(DiceValue);
-				JOptionPane.showMessageDialog(null, "End of Turn.");
-
+				//CurrentPlayer.setCurrentValues(DiceValue);
+				
 				for (int i = 0; i < 5; i++) {
 					Dices[i].setBorder(BorderFactory.createLineBorder(null));
 				}
+				
+				for(int y = 0; y < 5; y++)
+				{
+					Dices[y].setIcon(null); 
+					Dices[y].setBackground(Color.GRAY); 
+					Dices[y].setSelected(false); 
+					DiceValue[y] = 0;
+					Selected[y] = false; 
+				}		
+				
+				System.out.println("adsgadsfga");
+				Rolls = 0;
 			}
+			
 
 		}
 	}

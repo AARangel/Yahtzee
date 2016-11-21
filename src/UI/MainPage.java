@@ -1,196 +1,219 @@
 package UI;
+
 import java.awt.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 
-public class MainPage{
+@SuppressWarnings("serial")
+public class MainPage extends JFrame {
 
+	private int NumberPlayers;
+	private static JLabel Round;
+	private static JLabel Player1Score;
+	private static JLabel Player2Score;
+	private static ScoreCard ScoreCard;
+	private static ButtonsAndDice Dice;
+	private static JPanel[] PlayerPanel = new JPanel[2];
+
+	@SuppressWarnings("deprecation")
 	public MainPage() {
-		
-		JFrame frame = new JFrame("Yahtzee!");
-		frame.setSize(900,550);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		
-		
-		JPanel Main = new JPanel(); 
-		Main.setLayout(new BoxLayout(Main, BoxLayout.Y_AXIS)); 
-		Main.setSize(500, 500); 
-		
-		JPanel ScoreCard = ScoreCard();
-		
-		ButtonsAndDice Dice = new ButtonsAndDice();  
-		
-		Main.add(ScoreCard); 
-		Main.add(Box.createHorizontalStrut(5)); 
-		Main.add(Dice); 
-		Main.add(Box.createHorizontalStrut(5)); 
-		//Main.add(BottomButtons); 
-		
-		JPanel PlayersScore = Players(); 
-		PlayersScore.setPreferredSize(new Dimension(200, 480));
-		
-		JPanel flow = new JPanel(new FlowLayout()); 
-		
-		flow.add(PlayersScore); 
-		flow.add(Box.createVerticalStrut(200)); 
-		flow.add(Main);
-		
-		frame.add(flow);
-		frame.setVisible(true); 
+
+
+			JFrame frame = new JFrame("Yahtzee!");
+			frame.setSize(900, 550);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+			JPanel Main = new JPanel();
+			Main.setLayout(new BoxLayout(Main, BoxLayout.Y_AXIS));
+			Main.setSize(500, 500);
+
+			ScoreCard = new ScoreCard();
+
+			Dice = new ButtonsAndDice();
+
+			Round = new JLabel("Round 1/13");
+
+			Main.add(Round);
+			Main.add(ScoreCard);
+			Main.add(Box.createHorizontalStrut(5));
+			Main.add(Dice);
+			Main.add(Box.createHorizontalStrut(5));
+			// Main.add(BottomButtons);
+
+			JPanel PlayersScore = Players();
+			// Player PlayersScore = new Player();
+			PlayersScore.setPreferredSize(new Dimension(200, 480));
+
+			JPanel flow = new JPanel(new FlowLayout());
+
+			flow.add(PlayersScore);
+			flow.add(Box.createVerticalStrut(200));
+			flow.add(Main);
+			frame.add(flow);
+			frame.setVisible(true);
+
+			StartGame();
+
 	}
+	
+	public static void RunMain(){
+		JFrame frame = new JFrame("Yahtzee!");
+		frame.setSize(900, 550);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	public static JPanel ScoreCard() {
+		JPanel Main = new JPanel();
+		Main.setLayout(new BoxLayout(Main, BoxLayout.Y_AXIS));
+		Main.setSize(500, 500);
 
-		// Create the panel for the first score card
-		JPanel LPanel = new JPanel(new GridLayout(13, 2));
-		LPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		LPanel.setSize(500, 125);
+		ScoreCard = new ScoreCard();
 
-		JToggleButton leftLabel1 = new JToggleButton("Aces");
-		leftLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel1);
+		Dice = new ButtonsAndDice();
 
-		JLabel RightLabel1 = new JLabel("0");
-		RightLabel1.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel1);
+		Round = new JLabel("Round 1/13");
 
-		JToggleButton leftLabel2 = new JToggleButton("2s");
-		leftLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel2);
+		Main.add(Round);
+		Main.add(ScoreCard);
+		Main.add(Box.createHorizontalStrut(5));
+		Main.add(Dice);
+		Main.add(Box.createHorizontalStrut(5));
+		// Main.add(BottomButtons);
 
-		JLabel RightLabel2 = new JLabel("0");
-		RightLabel2.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel2);
+		JPanel PlayersScore = Players();
+		// Player PlayersScore = new Player();
+		PlayersScore.setPreferredSize(new Dimension(200, 480));
 
-		JToggleButton leftLabel3 = new JToggleButton("3s");
-		leftLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel3);
+		JPanel flow = new JPanel(new FlowLayout());
 
-		JLabel RightLabel3 = new JLabel("0");
-		RightLabel3.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel3);
+		flow.add(PlayersScore);
+		flow.add(Box.createVerticalStrut(200));
+		flow.add(Main);
+		frame.add(flow);
+		frame.setVisible(true);
 
-		JToggleButton leftLabel4 = new JToggleButton("4s");
-		leftLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel4);
-
-		JLabel RightLabel4 = new JLabel("0");
-		RightLabel4.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel4);
-
-		JToggleButton leftLabel5 = new JToggleButton("5s");
-		leftLabel5.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel5);
-
-		JLabel RightLabel5 = new JLabel("0");
-		RightLabel5.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel5);
-
-		JToggleButton leftLabel6 = new JToggleButton("6s");
-		leftLabel6.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel6);
-
-		JLabel RightLabel6 = new JLabel("0");
-		RightLabel6.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel6);
-
-		JToggleButton leftLabel10 = new JToggleButton("3 of a kind");
-		leftLabel10.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel10);
-
-		JLabel RightLabel10 = new JLabel("0");
-		RightLabel10.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel10);
-
-		JToggleButton leftLabel20 = new JToggleButton("4 of a king");
-		leftLabel20.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel20);
-
-		JLabel RightLabel20 = new JLabel("0");
-		RightLabel20.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel20);
-
-		JToggleButton leftLabel30 = new JToggleButton("Full House");
-		leftLabel30.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel30);
-
-		JLabel RightLabel30 = new JLabel("0");
-		RightLabel30.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel30);
-
-		JToggleButton leftLabel40 = new JToggleButton("Small Straight");
-		leftLabel40.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel40);
-
-		JLabel RightLabel40 = new JLabel("0");
-		RightLabel40.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel40);
-
-		JToggleButton leftLabel50 = new JToggleButton("Large Straight");
-		leftLabel50.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel50);
-
-		JLabel RightLabel50 = new JLabel("0");
-		RightLabel50.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel50);
-
-		JToggleButton leftLabel60 = new JToggleButton("Yahtzee");
-		leftLabel60.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel60);
-
-		JLabel RightLabel60 = new JLabel("0");
-		RightLabel60.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel60);
-
-		JToggleButton leftLabel70 = new JToggleButton("Chance");
-		leftLabel70.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(leftLabel70);
-
-		JLabel RightLabel70 = new JLabel("0");
-		RightLabel70.setHorizontalAlignment(SwingConstants.CENTER);
-		LPanel.add(RightLabel70);
-		
-		return LPanel;
-
+		StartGame();
 	}
 
 	public static JPanel Players() {
-		
-		JPanel Players = new JPanel(); 
-		Players.setLayout(new BoxLayout(Players, BoxLayout.Y_AXIS)); 
+
+		JPanel Players = new JPanel();
+		Players.setLayout(new BoxLayout(Players, BoxLayout.Y_AXIS));
 		Players.setBorder(BorderFactory.createLineBorder(Color.black));
 
-		
-		for(int i = 0; i < 4; i++){
-			
-			JPanel temp = new JPanel(new GridLayout(2, 1));
-			temp.setBorder(BorderFactory.createLineBorder(Color.black));
-			temp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-			temp.setBorder(BorderFactory.createLineBorder(Color.black, 1)); 
-		
-			String name = "Player " + (i+1);
-			
-			JLabel Score = new JLabel("Score: 0");
-			Score.setSize(100, 100); 
-			Score.setPreferredSize(new Dimension(100, 48));
+		JPanel temp = new JPanel(new GridLayout(2, 1));
+		temp.setBorder(BorderFactory.createLineBorder(Color.black));
+		temp.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		temp.setBorder(BorderFactory.createLineBorder(Color.black, 1));
 
-			JLabel Name = new JLabel(name);
-			Name.setSize(100, 100); 
-			Name.setPreferredSize(new Dimension(100,48));
-			
-			temp.add(Name); 
-			temp.add(Score); 
-			
-			Players.add(temp); 
-			
-			temp = null;
-			Name = null; 
-			Score = null; 
-		}
-		
-		return Players; 
-		
-		
-		
+		JPanel temp2 = new JPanel(new GridLayout(2, 1));
+		temp2.setBorder(BorderFactory.createLineBorder(Color.black));
+		temp2.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+		temp2.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+
+		Player1Score = new JLabel("Score: 0");
+		Player1Score.setSize(100, 100);
+		Player1Score.setPreferredSize(new Dimension(50, 48));
+		Player1Score.setHorizontalAlignment(SwingConstants.CENTER);
+
+		Player2Score = new JLabel("Score: 0");
+		Player2Score.setSize(100, 100);
+		Player2Score.setPreferredSize(new Dimension(50, 48));
+		Player2Score.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JLabel Player1Name = new JLabel("Player 1");
+		Player1Name.setSize(100, 100);
+		Player1Name.setPreferredSize(new Dimension(50, 48));
+		Player1Name.setHorizontalAlignment(SwingConstants.CENTER);
+
+		JLabel Player2Name = new JLabel("Player 2");
+		Player2Name.setSize(100, 100);
+		Player2Name.setPreferredSize(new Dimension(50, 48));
+		Player2Name.setHorizontalAlignment(SwingConstants.CENTER);
+
+		temp.add(Player1Name);
+		temp.add(Player1Score);
+		temp2.add(Player2Name);
+		temp2.add(Player2Score);
+
+		PlayerPanel[0] = temp;
+		PlayerPanel[1] = temp2;
+
+		Players.add(temp);
+		Players.add(temp2);
+
+		return Players;
+
 	}
-	
+
+	// Run the Game from here
+	private static void StartGame() {
+
+		Player[] Players = new Player[2];
+		for (int x = 0; x < 2; x++) {
+			Player NewPlayer = new Player();
+			Players[x] = NewPlayer;
+			NewPlayer = null;
+		}
+
+		System.out.println("Yes");
+
+		// Number of Rounds in the Game
+		for (int i = 1; i < 14; i++) {
+			// Number of players per round
+			for (int j = 0; j < 2; j++) {
+
+				Dice.setCurrentPlayer(Players[j]);
+				Dice.setCurrentScoreCard(ScoreCard);
+
+				String start = "Start of Player " + (j + 1) + " Turn.";
+				// JOptionPane.showMessageDialog(null,start);
+
+				if (j == 0) {
+					PlayerPanel[1].setBorder(BorderFactory.createEmptyBorder());
+					PlayerPanel[0].setBorder(BorderFactory.createLineBorder(
+							Color.blue, 5));
+				}
+
+				// Same as above
+				if (j == 1) {
+					PlayerPanel[0].setBorder(BorderFactory.createEmptyBorder());
+					PlayerPanel[1].setBorder(BorderFactory.createLineBorder(
+							Color.blue, 5));
+				}
+
+				while (!Players[j].getEndTurn()) {
+
+					System.out.println(Players[j].getEndTurn());
+				}
+
+				int TotalCurrent = 0;
+				int[] array = Dice.getCurrentPlayer().getScoreCard();
+				for (int z = 0; z < 14; z++) {
+					TotalCurrent = array[i] + TotalCurrent;
+				}
+
+				if (j == 1) {
+					String string1 = "Score: " + TotalCurrent;
+					Player2Score.setText(string1);
+					array = null;
+				}
+				if (j == 0) {
+					String string2 = "Score: " + TotalCurrent;
+					Player1Score.setText(string2);
+					array = null;
+				}
+
+				String curr = "End of Player " + (j + 1) + " Turn.";
+				// JOptionPane.showMessageDialog(null,curr);
+
+				ScoreCard.reset();
+
+			}
+
+			String Rounds = "Round " + (i + 1) + "/13";
+			Round.setText(Rounds);
+		}
+
+	}
+
 }
