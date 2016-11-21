@@ -141,7 +141,7 @@ public class MainPage extends JFrame {
 				Dice.setCurrentScoreCard(ScoreCard);
 
 				String start = "Start of Player " + (j + 1) + " Turn.";
-				// JOptionPane.showMessageDialog(null,start);
+				JOptionPane.showMessageDialog(null,start);
 
 				if (j == 0) {
 					PlayerPanel[1].setBorder(BorderFactory.createEmptyBorder());
@@ -179,7 +179,7 @@ public class MainPage extends JFrame {
 				}
 
 				String curr = "End of Player " + (j + 1) + " Turn.";
-				// JOptionPane.showMessageDialog(null,curr);
+				 JOptionPane.showMessageDialog(null,curr);
 
 				ScoreCard.reset();
 
