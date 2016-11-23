@@ -1,6 +1,7 @@
 package UI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,8 +40,11 @@ public class ScoreCard extends JPanel {
 	private static JLabel YahtzeeValue;
 	private static JLabel ChanceValue;
 	private static JLabel YahtzeeBonusValue; 
+	
 	private Player CurrentPlayer;
 	private Boolean SetTotalValue;
+	private static Color Wine = Color.decode("#722f37");
+	private static Color Gold = Color.decode("#FFD700");
 	
 	public Player getCurrentPlayer() {
 		return CurrentPlayer;
@@ -56,13 +60,17 @@ public class ScoreCard extends JPanel {
 
 	private void init() {
 		// Create the panel for the first score card
-		JPanel ScoreCardPanel = new JPanel(new GridLayout(14, 2));
-		ScoreCardPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-		ScoreCardPanel.setSize(500, 125);
+		JPanel ScoreCardPanel = new JPanel(new GridLayout(14, 2, 10, 5));
+		ScoreCardPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		ScoreCardPanel.setPreferredSize(new Dimension(500, 400)); 
 
 		Aces = new JToggleButton("Aces");
 		Aces.setHorizontalAlignment(SwingConstants.CENTER);
 		Aces.addActionListener(new AcesValueListener());
+		Aces.setBackground(Wine); 
+		Aces.setForeground(Color.WHITE);
+		Aces.setFocusPainted(false); 
+		Aces.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Aces);
 
 		AcesValue = new JLabel("0");
@@ -72,6 +80,10 @@ public class ScoreCard extends JPanel {
 		Twos = new JToggleButton("2s");
 		Twos.addActionListener(new TwosValueListener());
 		Twos.setHorizontalAlignment(SwingConstants.CENTER);
+		Twos.setBackground(Wine); 
+		Twos.setForeground(Color.WHITE);
+		Twos.setFocusPainted(false); 
+		Twos.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Twos);
 
 		TwosScore = new JLabel("0");
@@ -81,6 +93,10 @@ public class ScoreCard extends JPanel {
 		Threes = new JToggleButton("3s");
 		Threes.addActionListener(new ThreesValueListener());
 		Threes.setHorizontalAlignment(SwingConstants.CENTER);
+		Threes.setBackground(Wine); 
+		Threes.setForeground(Color.WHITE);
+		Threes.setFocusPainted(false); 
+		Threes.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Threes);
 
 		ThreesValue = new JLabel("0");
@@ -90,6 +106,10 @@ public class ScoreCard extends JPanel {
 		Fours = new JToggleButton("4s");
 		Fours.addActionListener(new FoursValueListener());
 		Fours.setHorizontalAlignment(SwingConstants.CENTER);
+		Fours.setBackground(Wine); 
+		Fours.setForeground(Color.WHITE);
+		Fours.setFocusPainted(false); 
+		Fours.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Fours);
 
 		FoursValue = new JLabel("0");
@@ -99,7 +119,12 @@ public class ScoreCard extends JPanel {
 		Fives = new JToggleButton("5s");
 		Fives.addActionListener(new FivesValueListener());
 		Fives.setHorizontalAlignment(SwingConstants.CENTER);
+		Fives.setBackground(Wine); 
+		Fives.setForeground(Color.WHITE);
+		Fives.setFocusPainted(false); 
+		Fives.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Fives);
+		
 		FivesValue = new JLabel("0");
 		FivesValue.setHorizontalAlignment(SwingConstants.CENTER);
 		ScoreCardPanel.add(FivesValue);
@@ -107,15 +132,23 @@ public class ScoreCard extends JPanel {
 		Sixs = new JToggleButton("6s");
 		Sixs.addActionListener(new SixesValueListener());
 		Sixs.setHorizontalAlignment(SwingConstants.CENTER);
+		Sixs.setBackground(Wine); 
+		Sixs.setForeground(Color.WHITE);
+		Sixs.setFocusPainted(false); 
+		Sixs.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Sixs);
 
-		SixsValue = new JLabel("0");
+		SixsValue = new JLabel("0"); 
 		SixsValue.setHorizontalAlignment(SwingConstants.CENTER);
 		ScoreCardPanel.add(SixsValue);
 
 		ThreeKind = new JToggleButton("3 of a kind");
 		ThreeKind.addActionListener(new ThreeValueListener());
 		ThreeKind.setHorizontalAlignment(SwingConstants.CENTER);
+		ThreeKind.setBackground(Wine); 
+		ThreeKind.setForeground(Color.WHITE);
+		ThreeKind.setFocusPainted(false); 
+		ThreeKind.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(ThreeKind);
 
 		ThreeKindValue = new JLabel("0");
@@ -125,6 +158,10 @@ public class ScoreCard extends JPanel {
 		FourKind = new JToggleButton("4 of a king");
 		FourKind.addActionListener(new FourValueListener());
 		FourKind.setHorizontalAlignment(SwingConstants.CENTER);
+		FourKind.setBackground(Wine); 
+		FourKind.setForeground(Color.WHITE);
+		FourKind.setFocusPainted(false); 
+		FourKind.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(FourKind);
 
 		FourKindValue = new JLabel("0");
@@ -134,6 +171,10 @@ public class ScoreCard extends JPanel {
 		FullHouse = new JToggleButton("Full House");
 		FullHouse.addActionListener(new FullHouseValueListener()); 
 		FullHouse.setHorizontalAlignment(SwingConstants.CENTER);
+		FullHouse.setBackground(Wine); 
+		FullHouse.setForeground(Color.WHITE);
+		FullHouse.setFocusPainted(false); 
+		FullHouse.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(FullHouse);
 
 		FullHouseValue = new JLabel("0");
@@ -143,6 +184,10 @@ public class ScoreCard extends JPanel {
 		SmallStraight = new JToggleButton("Small Straight");
 		SmallStraight.addActionListener(new smallStraightValueListener()); 
 		SmallStraight.setHorizontalAlignment(SwingConstants.CENTER);
+		SmallStraight.setBackground(Wine); 
+		SmallStraight.setForeground(Color.WHITE);
+		SmallStraight.setFocusPainted(false); 
+		SmallStraight.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(SmallStraight);
 
 		SmallStraightValue = new JLabel("0");
@@ -152,6 +197,10 @@ public class ScoreCard extends JPanel {
 		LargeSraight = new JToggleButton("Large Straight");
 		LargeSraight.addActionListener(new LargeStraightValueListener());
 		LargeSraight.setHorizontalAlignment(SwingConstants.CENTER);
+		LargeSraight.setBackground(Wine); 
+		LargeSraight.setForeground(Color.WHITE);
+		LargeSraight.setFocusPainted(false); 
+		LargeSraight.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(LargeSraight);
 
 		LargeSraightValue = new JLabel("0");
@@ -161,6 +210,10 @@ public class ScoreCard extends JPanel {
 		Yahtzee = new JToggleButton("Yahtzee");
 		Yahtzee.addActionListener(new YahtzeeValueListener()); 
 		Yahtzee.setHorizontalAlignment(SwingConstants.CENTER);
+		Yahtzee.setBackground(Wine); 
+		Yahtzee.setForeground(Color.WHITE);
+		Yahtzee.setFocusPainted(false); 
+		Yahtzee.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Yahtzee);
 
 		YahtzeeValue = new JLabel("0");
@@ -170,6 +223,10 @@ public class ScoreCard extends JPanel {
 		Chance = new JToggleButton("Chance");
 		Chance.addActionListener(new ChanceValueListener()); 
 		Chance.setHorizontalAlignment(SwingConstants.CENTER);
+		Chance.setBackground(Wine); 
+		Chance.setForeground(Color.WHITE);
+		Chance.setFocusPainted(false); 
+		Chance.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(Chance);
 
 		ChanceValue = new JLabel("0");
@@ -178,12 +235,17 @@ public class ScoreCard extends JPanel {
 		
 		YahtzeeBonus = new JToggleButton("Yahtzee Bonus");
 		YahtzeeBonus.setHorizontalAlignment(SwingConstants.CENTER);
+		YahtzeeBonus.setBackground(Wine); 
+		YahtzeeBonus.setForeground(Color.WHITE);
+		YahtzeeBonus.setFocusPainted(false); 
+		YahtzeeBonus.setBorder(BorderFactory.createLineBorder(Gold, 1));
 		ScoreCardPanel.add(YahtzeeBonus);
 
 		YahtzeeBonusValue = new JLabel("0");
 		YahtzeeBonusValue.setHorizontalAlignment(SwingConstants.CENTER);
 		ScoreCardPanel.add(YahtzeeBonusValue);
 
+		ScoreCardPanel.setBackground(Color.black);
 		this.add(ScoreCardPanel);
 	}
 
@@ -202,6 +264,20 @@ public class ScoreCard extends JPanel {
 		YahtzeeValue.setText("0");
 		ChanceValue.setText("0");
 
+		AcesValue.setForeground(null); 
+		TwosScore.setForeground(null); 
+		ThreesValue.setForeground(null); 
+		FoursValue.setForeground(null); 
+		FivesValue.setForeground(null); 
+		SixsValue.setForeground(null); 
+		ThreeKindValue.setForeground(null); 
+		FourKindValue.setForeground(null); 
+		SmallStraightValue.setForeground(null); 
+		FullHouseValue.setForeground(null); 
+		LargeSraightValue.setForeground(null); 
+		YahtzeeValue.setForeground(null); 
+		ChanceValue.setForeground(null); 
+		
 		// reset any that are selected to not be
 		Aces.setSelected(false); 
 		Twos.setSelected(false);
@@ -241,6 +317,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					AcesValue.setText(str);
+					AcesValue.setForeground(Gold); 
 					ScoreCardValues[0] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -271,6 +348,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					TwosScore.setText(str);
+					TwosScore.setForeground(Gold);
 					ScoreCardValues[1] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -301,6 +379,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					ThreesValue.setText(str);
+					ThreesValue.setForeground(Gold);
 					ScoreCardValues[2] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -331,6 +410,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					FoursValue.setText(str);
+					FoursValue.setForeground(Gold);
 					ScoreCardValues[3] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -361,6 +441,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					FivesValue.setText(str);
+					FivesValue.setForeground(Gold);
 					ScoreCardValues[4] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -391,6 +472,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					SixsValue.setText(str);
+					SixsValue.setForeground(Gold);
 					ScoreCardValues[5] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -433,7 +515,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					ThreeKindValue.setText(str);
-					ThreeKindValue.setBackground(Color.ORANGE);
+					ThreeKindValue.setForeground(Gold);
 					ScoreCardValues[6] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -475,7 +557,7 @@ public class ScoreCard extends JPanel {
 
 					String str = total + " ";
 					FourKindValue.setText(str);
-					FourKindValue.setBackground(Color.ORANGE);
+					FourKindValue.setForeground(Gold);
 					ScoreCardValues[7] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -531,6 +613,7 @@ public class ScoreCard extends JPanel {
 
 					String str = " " + total + " ";
 					FullHouseValue.setText(str);
+					FullHouseValue.setForeground(Gold);
 					ScoreCardValues[8] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -591,6 +674,7 @@ public class ScoreCard extends JPanel {
 					
 					String str = " " + total + " ";
 					SmallStraightValue.setText(str);
+					SmallStraightValue.setForeground(Gold);
 					ScoreCardValues[9] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -651,6 +735,7 @@ public class ScoreCard extends JPanel {
 					
 					String str = " " + total + " ";
 					LargeSraightValue.setText(str);
+					LargeSraightValue.setForeground(Gold);
 					ScoreCardValues[10] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -690,6 +775,7 @@ public class ScoreCard extends JPanel {
 					
 					String str = " " + total + " ";
 					YahtzeeValue.setText(str);
+					YahtzeeValue.setForeground(Gold);
 					ScoreCardValues[11] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}
@@ -716,6 +802,7 @@ public class ScoreCard extends JPanel {
 					
 					String str = " " + total + " ";
 					ChanceValue.setText(str);
+					ChanceValue.setForeground(Gold);
 					ScoreCardValues[12] = total;
 					CurrentPlayer.setScoreCard(ScoreCardValues); 
 				}

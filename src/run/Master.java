@@ -1,15 +1,15 @@
 package run;
 
-import UI.LaunchMenu;
+import java.io.IOException;
+
 import UI.MainPage;
 
 public class Master {
 
 	@SuppressWarnings("unused")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		
 		MainPage Master = new MainPage();
-		
 		
 	}
 }

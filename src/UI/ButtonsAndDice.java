@@ -22,6 +22,8 @@ public class ButtonsAndDice extends JPanel {
 	private int Rolls;
 	private Player CurrentPlayer;
 	private ScoreCard CurrentScoreCard; 
+	private static Color Wine = Color.decode("#722f37");
+	private static Color Gold = Color.decode("#FFD700");
 	
 	public ScoreCard getCurrentScoreCard() {
 		return CurrentScoreCard;
@@ -39,15 +41,20 @@ public class ButtonsAndDice extends JPanel {
 	// construct the Section where the dice are located
 	private void init() {
 		JPanel LowerSection = new JPanel();
+		LowerSection.setBackground(Color.BLACK); 
+		LowerSection.setForeground(Color.WHITE); 
 		LowerSection.setLayout(new BoxLayout(LowerSection, BoxLayout.Y_AXIS));
 
 		JPanel Dice = new JPanel(new GridLayout(1, 5, 20, 20));
+		Dice.setBackground(Color.BLACK); 
+		Dice.setForeground(Color.WHITE); 
 		Dice.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 		for (int i = 0; i < 5; i++) {
 			JToggleButton temp = new JToggleButton();
 			temp.setPreferredSize(new Dimension(65, 65));
-			temp.setBackground(Color.gray);
+			temp.setBackground(Wine);
+			temp.setBorder(BorderFactory.createLineBorder(Wine, 5));
 			// temp.setIcon(DieImage(i));
 			temp.addActionListener(new DiceListener());
 			Dices[i] = temp;
@@ -56,11 +63,28 @@ public class ButtonsAndDice extends JPanel {
 		}
 
 		JPanel Buttons = new JPanel(new GridLayout(1, 3, 20, 20));
-
+		Buttons.setBackground(Color.BLACK); 
+		Buttons.setForeground(Color.WHITE); 
+		
 		Roll = new JButton("ROLL");
+		Roll.setBackground(Wine); 
+		Roll.setForeground(Color.WHITE);
+		Roll.setFocusPainted(false); 
+		Roll.setBorder(BorderFactory.createLineBorder(Gold, 2));
+		
 		Keep = new JButton("KEEP");
+		Keep.setBackground(Wine); 
+		Keep.setForeground(Color.WHITE);
+		Keep.setFocusPainted(false); 
+		Keep.setBorder(BorderFactory.createLineBorder(Gold, 2));
+		
 		EndTurn = new JButton("END TURN");
+		EndTurn.setBackground(Wine); 
+		EndTurn.setForeground(Color.WHITE);
+		EndTurn.setFocusPainted(false); 
+		EndTurn.setBorder(BorderFactory.createLineBorder(Gold, 2));
 
+		
 		Roll.addActionListener(new RollButtonListener());
 		Keep.addActionListener(new KeepButtonListener());
 		EndTurn.addActionListener(new EndTurnButtonListener());
@@ -187,7 +211,7 @@ public class ButtonsAndDice extends JPanel {
 
 				if (selected)
 					button.setBorder(BorderFactory.createLineBorder(
-							Color.yellow, 5));
+							Gold, 5));
 				else
 					button.setBorder(BorderFactory.createLineBorder(null));
 
@@ -227,13 +251,13 @@ public class ButtonsAndDice extends JPanel {
 				for(int y = 0; y < 5; y++)
 				{
 					Dices[y].setIcon(null); 
-					Dices[y].setBackground(Color.GRAY); 
+					Dices[y].setBackground(Wine); 
 					Dices[y].setSelected(false); 
 					DiceValue[y] = 0;
 					Selected[y] = false; 
 				}		
 				
-				System.out.println("adsgadsfga");
+				
 				Rolls = 0;
 			}
 			
