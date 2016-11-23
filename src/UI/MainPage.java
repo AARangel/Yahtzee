@@ -228,10 +228,11 @@ public class MainPage extends JFrame {
 		for (int i = 1; i < 14; i++) {
 			// Number of players per round
 			for (int j = 0; j < 2; j++) {
-
+				
 				Dice.setCurrentPlayer(Players[j]);
 				Dice.setCurrentScoreCard(ScoreCard);
 
+				
 				String start = "Start of Player " + (j + 1) + " Turn.";
 				JOptionPane.showMessageDialog(null,start);
 
@@ -252,12 +253,6 @@ public class MainPage extends JFrame {
 
 					System.out.println(Players[j].getEndTurn());
 				}
-
-//				int TotalCurrent = 0;
-//				int[] array = Dice.getCurrentPlayer().getScoreCard();
-//				for (int z = 0; z < 14; z++) {
-//					TotalCurrent = array[i] + TotalCurrent;
-//				}
 
 				if (j == 1) {
 					int TotalCurrent = 0;
